@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Copied from '../components/Copied'
+import copyToClipboard from '../helpers/copyToClipboard'
 
 export default function Home() {
   const [horizontalLength, setHorizontalLength] = useState(10)
@@ -35,21 +37,11 @@ export default function Home() {
     }
   }
 
-  function copyToClipboard(target) {
-    target.select()
-    document.execCommand('copy')
-    setCopied(true)
-    setTimeout(() => {
-      setCopied(false)
-    }, 1500);
-  }
-
   return (
     <Container settings={{
       backgroundColor,
       boxColor,
-      boxShadow,
-      copied
+      boxShadow
     }
     }>
       <div className="settings">
@@ -94,12 +86,10 @@ export default function Home() {
 
       <div className="review">
         <div className="box">
-          <input type="text" readOnly value={`box-shadow: ${boxShadow()};`} onClick={(e) => copyToClipboard(e.target)} />
+          <input type="text" readOnly value={`box-shadow: ${boxShadow()};`} onClick={(e) => copyToClipboard(e.target, status = setCopied)} />
         </div>
       </div>
-      <div className="copied">
-        Copied!
-      </div>
+      <Copied copied={copied} />
     </Container>
   )
 }
@@ -151,29 +141,6 @@ const Container = styled.main`
         border: 1px solid #ccc;
         border-radius: 3px;
       }
-    }
-  }
-  .copied {
-    width: 200px;
-    line-height: 30px;
-    padding: 5px 15px;
-    border-radius: 3px;
-    color: #fff;
-    background: green;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    display: ${({settings}) => settings.copied ? 'block' : 'none'};
-    animation: fade 300ms forwards;
-  }
-  @keyframes fade {
-    from {
-      top: 0;
-      opacity: 0;
-    }
-    to{
-      top: 30px;
-      opacity: 1;
     }
   }
 `

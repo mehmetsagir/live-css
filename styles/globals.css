@@ -21,3 +21,27 @@ a {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.copied {
+  width: 200px;
+  line-height: 30px;
+  padding: 5px 15px;
+  border-radius: 3px;
+  color: #fff;
+  background: green;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fade 300ms forwards;
+}
+
+@keyframes fade {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to{
+    top: 30px;
+    opacity: 1;
+  }
+}
