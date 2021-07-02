@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable @next/next/no-img-element */
+import { useState } from 'react'
 import styled from 'styled-components'
+import Layout from '../components/Layout'
 import Copied from '../components/Copied'
 import copyToClipboard from '../helpers/copyToClipboard'
 
@@ -12,16 +14,6 @@ export default function Home() {
   const [opacity, setOpacity] = useState(1)
   const [shadowOpacity, setShadowOpacity] = useState(100)
   const [copied, setCopied] = useState(false)
-
-
-  useEffect(() => {
-    if(shadowOpacity == 100 || shadowOpacity == 0) {
-      shadowOpacity == 100 ? setOpacity(1) : setOpacity(shadowOpacity)
-      return;
-    } 
-
-    shadowOpacity < 10 ? setOpacity('0.0' + shadowOpacity) : setOpacity('0.' + shadowOpacity)
-  }, [shadowOpacity])
 
   function dropShadow(){
     var c;
@@ -36,11 +28,7 @@ export default function Home() {
   }
 
   return (
-    <Container settings={{
-      backgroundColor,
-      dropShadow
-    }
-    }>
+    <Layout shadowOpacity={shadowOpacity} setOpacity={setOpacity}>
       <div className="settings">
         <div className="row">
           <p>Horizontal Length <span>{ horizontalLength }px</span></p>
@@ -72,63 +60,24 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="review">
+      <Review className="review" settings={{ backgroundColor, dropShadow }}>
         <img src="images/avatar.png" alt="Picture of the author" />
         <input type="text" readOnly value={`filter: ${dropShadow()};`} onClick={(e) => copyToClipboard(e.target, status = setCopied)} />
-      </div>
+      </Review>
       <Copied copied={copied} />
-    </Container>
+    </Layout>
   )
 }
 
-const Container = styled.main`
-  padding: 50px 0;
-  display: flex;
+const Review = styled.div`
+  background: ${({settings}) => settings.backgroundColor};
 
-  .settings {
-    max-width: max-content;
-    display: flex;
-    flex-direction: column;
-    padding-right: 100px;
-    .br {
-      border-top: 1px dashed #ccc;
-      margin: 20px 0;
-    }
-    .row {
-      width: 300px;
-      p {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
-      }
-      input {
-        width: 100%;
-      }
-    }
+  img {
+    width: 350px;
+    filter: ${({settings}) => settings.dropShadow};
   }
-  .review {
-    flex: 1;
-    height: 550px;
-    background: ${({settings}) => settings.backgroundColor};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
 
-    img {
-      width: 350px;
-      filter: ${({settings}) => settings.dropShadow};
-    }
-
-    input {
-      width: 55%;
-      height: 40px;
-      padding: 0 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      z-index: 10;
-    }
-    
+  input {
+    width: 55%;
   }
 `
