@@ -40,6 +40,9 @@ function MyApp({ Component, pageProps }) {
             <Link href="/text-shadow">
               <a className={activeClass('/text-shadow')}>Text Shadow</a>
             </Link>
+            <Link href="/border-radius">
+              <a className={activeClass('/border-radius')}>Border Radius</a>
+            </Link>
           </nav>
         </NavContainer>
         <Component {...pageProps} />
