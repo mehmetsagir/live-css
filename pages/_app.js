@@ -25,13 +25,20 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className="container">
         <NavContainer>
-          <h3>LiveCSS</h3>
+          <Link exect href="/">
+            <a>
+              <h3>LiveCSS</h3>
+            </a>
+          </Link>
           <nav>
             <Link exect href="/">
               <a className={activeClass('/')}>Box Shadow</a>
             </Link>
             <Link href="/drop-shadow">
               <a className={activeClass('/drop-shadow')}>Drop Shadow</a>
+            </Link>
+            <Link href="/text-shadow">
+              <a className={activeClass('/text-shadow')}>Text Shadow</a>
             </Link>
           </nav>
         </NavContainer>

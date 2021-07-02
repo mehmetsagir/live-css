@@ -46,7 +46,6 @@ const Container = styled.main`
   }
   .review {
     flex: 1;
-    height: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,6 +54,7 @@ const Container = styled.main`
 
     input {
       height: 40px;
+      min-height: 40px;
       padding: 0 10px;
       border: 1px solid #ccc;
       border-radius: 3px;
