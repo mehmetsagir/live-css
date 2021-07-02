@@ -1,5 +1,8 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import styled from 'styled-components'
 import '../styles/globals.css'
+
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,10 +14,35 @@ function MyApp({ Component, pageProps }) {
         <title>Live CSS</title>
       </Head>
       <div className="container">
+        <NavContainer>
+          <h3>LiveCSS</h3>
+          <nav>
+            <Link href="/">
+              <a>Box Shadow</a>
+            </Link>
+          </nav>
+        </NavContainer>
         <Component {...pageProps} />
       </div>
     </>
   )
 }
 
+const NavContainer = styled.div`
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 35px;
+    font-weight: 400;
+  }
+
+  nav a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`
 export default MyApp
