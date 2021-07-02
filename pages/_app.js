@@ -1,10 +1,20 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import '../styles/globals.css'
 
 
 function MyApp({ Component, pageProps }) {
+
+  const router = useRouter()
+
+  function activeClass(href) {
+    if(router.pathname === href) {
+      return 'active'
+    }
+  }
+
   return (
     <>
       <Head>
@@ -17,8 +27,11 @@ function MyApp({ Component, pageProps }) {
         <NavContainer>
           <h3>LiveCSS</h3>
           <nav>
-            <Link href="/">
-              <a>Box Shadow</a>
+            <Link exect href="/">
+              <a className={activeClass('/')}>Box Shadow</a>
+            </Link>
+            <Link href="/drop-shadow">
+              <a className={activeClass('/drop-shadow')}>Drop Shadow</a>
             </Link>
           </nav>
         </NavContainer>
@@ -40,8 +53,14 @@ const NavContainer = styled.div`
   }
 
   nav a {
+    opacity: 0.5;
+    transition: 250ms;
+    &.active,
     &:hover {
-      text-decoration: underline;
+      opacity: 1;
+    }
+    &:not(:last-child) {
+      margin-right: 20px;
     }
   }
 `
