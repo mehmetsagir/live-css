@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Copied from '../components/Copied'
 import copyToClipboard from '../helpers/copyToClipboard'
+import getOpacity from '../helpers/getOpacity'
 
 export default function Home() {
   const [horizontalLength, setHorizontalLength] = useState(10)
@@ -28,8 +29,13 @@ export default function Home() {
     }
   }
 
+  function getShadowOpacity (value) {
+    setShadowOpacity(value)
+    getOpacity(value, setOpacity)
+  }
+
   return (
-    <Layout shadowOpacity={shadowOpacity} setOpacity={setOpacity}>
+    <Layout>
       <div className="settings">
         <div className="row">
           <p>Horizontal Length <span>{ horizontalLength }px</span></p>
@@ -66,7 +72,7 @@ export default function Home() {
         <div className="br"></div>
         <div className="row">
           <p>Opacity <span>{ opacity }</span></p>
-          <input type="range" min="0" max="100" value={shadowOpacity} onChange={(e) => setShadowOpacity(e.target.value)} />
+          <input type="range" min="0" max="100" value={shadowOpacity} onChange={(e) => getShadowOpacity(e.target.value)} />
         </div>
       </div>
 

@@ -1,17 +1,6 @@
-import { useEffect } from 'react';
 import styled from 'styled-components'
 
-const Layout = ({shadowOpacity, setOpacity, children}) => {
-
-  useEffect(() => {
-    if(shadowOpacity == 100 || shadowOpacity == 0) {
-      shadowOpacity == 100 ? setOpacity(1) : setOpacity(shadowOpacity)
-      return;
-    } 
-
-    shadowOpacity < 10 ? setOpacity('0.0' + shadowOpacity) : setOpacity('0.' + shadowOpacity)
-  }, [setOpacity, shadowOpacity])
-
+const Layout = ({children}) => {
   return (
     <Container>
       {children}
@@ -42,6 +31,14 @@ const Container = styled.main`
       input {
         width: 100%;
       }
+      select {
+        width: 100%;
+        height: 30px;
+        appearance: none;
+        border: 1px solid #ccc;
+        padding: 0 4px;
+        font-size: 14px;
+      }
     }
   }
   .review {
@@ -60,6 +57,9 @@ const Container = styled.main`
       border-radius: 3px;
       z-index: 10;
     }
+  }
+  .my-10 {
+    margin: 10px 0;
   }
 `
 
