@@ -1,6 +1,4 @@
-✨ **Live Demo ->** [Live CSS](https://livecss.vercel.app/)
-
-#### What can I create with this project?
+### What can I create with this project?
 - [Box Shadow](https://livecss.vercel.app/)
 - [Drop Shadow](https://livecss.vercel.app/drop-shadow)
 - [Text Shadow](https://livecss.vercel.app/text-shadow)
